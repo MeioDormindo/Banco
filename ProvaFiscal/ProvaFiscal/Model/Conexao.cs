@@ -13,9 +13,16 @@ namespace ProvaFiscal.Model
         SqlConnection con = new SqlConnection();
         public Conexao()
         {
-            con.ConnectionString = @"Data Source=(localdb)\prova;AttachDbFilename=C:\Users\meta\Source\Repos\Banco\ProvaFiscal\ProvaFiscal\prova.mdf;Initial Catalog=prova;Integrated Security=True";
+            con.ConnectionString = @"Data Source=DESKTOP-4H70OMV\METAPOSTO;Initial Catalog=Prova;User ID=sa;Password=kb74Uwfcq/DRfmAGZd8pkghc52rMpXAGBZXVQOr4pkpIpsK5nt6pDCJE+EF+47wZY8aX87eqCtt/F9vjKBHMNk8jJ/2oVXOtGBcUEMn9cb1txI0Fiv7N+LFzgcfWGJuW
+";
 
         }
+
+
+       
+
+
+
 
         public SqlConnection conectar()
         {

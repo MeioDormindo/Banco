@@ -15,7 +15,7 @@ namespace ProvaFiscal.Model
         SqlCommand cmd = new SqlCommand();
 
         public int id;
-        private String Mensagem;
+        public String Mensagem;
         public String Veiculo;
         public String Data_estacionamento;
         public int Hora;
@@ -44,15 +44,15 @@ namespace ProvaFiscal.Model
         public void Cadastro(Estacionamento estacionamento)
         {
             // comando sql insert
-            cmd.CommandText = "insert into Estacionamento (@veiculo, @Data_estacionamento,  @lado, @situacao, @DataRegistro, @hora) ";
+            cmd.CommandText = "insert into estacionamento (Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora)  values(@veiculo, @Data_estacionamento,  @lado, @situacao, @DataRegistro, @hora) ";
 
             // parametros
             cmd.Parameters.AddWithValue("veiculo", this.Veiculo);
             cmd.Parameters.AddWithValue("Data_estacionamento", this.Data_estacionamento);
-            cmd.Parameters.AddWithValue("hora", this.Hora);
             cmd.Parameters.AddWithValue("lado", this.Lado);
             cmd.Parameters.AddWithValue("situacao", this.Situacao);
-            cmd.Parameters.AddWithValue("data", this.DataRegistro);
+            cmd.Parameters.AddWithValue("DataRegistro", this.DataRegistro);
+            cmd.Parameters.AddWithValue("hora", this.Hora);
 
             try
             {
@@ -64,6 +64,7 @@ namespace ProvaFiscal.Model
                 conexa.desconectar();
                 // msg positiva
                 this.Mensagem = "Cadastrado com sucesso";
+                this.Situacao = "";
 
             }
             catch (SqlException e)
@@ -82,26 +83,97 @@ namespace ProvaFiscal.Model
             if (this.Hora >= 7 && this.Hora <= 20)
             {
 
-                if (dia.Contains("Domingo"))
+                if (dia.Contains("domingo"))
                 {
 
                     this.Situacao = "Regular";
 
                 }
-                else if (dia.Contains("Segunda"))
+                else if (dia.Contains("segunda"))
                 {
-                    if (this.Hora % 2 == 0)
+                    if (oDate.Date.Day % 2 == 0)
+                    {
+                        if (this.Lado == "Direito")
+
+                            this.Situacao = "Irregular";
+                        else
+                            this.Situacao = "Regular";
+                    }
+                    else
+                        if (this.Lado == "Direito")
+                    {
+
+                        this.Situacao = "Regular";
+                    }
+                    else
+                        this.Situacao = "Irregular";
+
+                }
+                else if (dia.Contains("terça"))
+                {
+                    if (oDate.Date.Day % 2 == 0)
+                    {
+                        if (this.Lado == "Direito")
+                        {
+
+                            this.Situacao = "Irregular";
+                        }
+                        else
+                            this.Situacao = "Regular";
+
+                    }
+                    else
+                        if (this.Lado == "Direito")
+                    {
+
+                        this.Situacao = "Regular";
+                    }
+                    else
+                        this.Situacao = "Irregular";
+                }
+                else if (dia.Contains("quar"))
+                {
+                    if (oDate.Date.Day % 2 == 0)
+                    {
+                        if (this.Lado == "Direito")
+                        {
+                            this.Situacao = "Irregular";
+                        }
+                        else
+                            this.Situacao = "Regular";
+
+                    }
+                    else
+                        if (this.Lado == "Direito")
+                    {
+
+                        this.Situacao = "Regular";
+                    }
+                    else
+                        this.Situacao = "Irregular";
+                }
+                else if (dia.Contains("quinta"))
+                {
+                    if (oDate.Date.Day % 2 == 0)
                     {
                         if (this.Lado == "Direito")
                             this.Situacao = "Irregular";
                         else
                             this.Situacao = "Regular";
-                    }
 
+                    }
+                    else
+                        if (this.Lado == "Direito")
+                    {
+
+                        this.Situacao = "Regular";
+                    }
+                    else
+                        this.Situacao = "Irregular";
                 }
-                else if (dia.Contains("Terça"))
+                else if (dia.Contains("sexta"))
                 {
-                    if (this.Hora % 2 == 0)
+                    if (oDate.Date.Day % 2 == 0)
                     {
                         if (this.Lado == "Direito")
                             this.Situacao = "Irregular";
@@ -109,41 +181,16 @@ namespace ProvaFiscal.Model
                             this.Situacao = "Regular";
 
                     }
-                }
-                else if (dia.Contains("Quarta"))
-                {
-                    if (this.Hora % 2 == 0)
-                    {
+                    else
                         if (this.Lado == "Direito")
-                            this.Situacao = "Irregular";
-                        else
-                            this.Situacao = "Regular";
-
-                    }
-                }
-                else if (dia.Contains("Quinta"))
-                {
-                    if (this.Hora % 2 == 0)
                     {
-                        if (this.Lado == "Direito")
-                            this.Situacao = "Irregular";
-                        else
-                            this.Situacao = "Regular";
 
+                        this.Situacao = "Regular";
                     }
+                    else
+                        this.Situacao = "Irregular";
                 }
-                else if (dia.Contains("Sexta"))
-                {
-                    if (this.Hora % 2 == 0)
-                    {
-                        if (this.Lado == "Direito")
-                            this.Situacao = "Irregular";
-                        else
-                            this.Situacao = "Regular";
-
-                    }
-                }
-                else if (dia.Contains("Sabado"))
+                else if (dia.Contains("sabado"))
                 {
 
                     this.Situacao = "Regular";
@@ -156,11 +203,11 @@ namespace ProvaFiscal.Model
 
                 }
 
-                else
-                {
-                    this.Situacao = "Regular";
-                }
+
+
             }
+            else
+                this.Situacao = "Regular";
         }
     }
 }

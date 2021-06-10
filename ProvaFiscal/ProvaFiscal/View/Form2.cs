@@ -30,6 +30,7 @@ namespace ProvaFiscal.View
             Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora,data_estacionamento);
 
             estacionamento.Cadastro(estacionamento);
+            MessageBox.Show(estacionamento.Mensagem);
 
         }
 
