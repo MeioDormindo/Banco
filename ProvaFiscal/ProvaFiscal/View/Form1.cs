@@ -64,12 +64,12 @@ namespace ProvaFiscal
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {           
+        {
+               
             CultureInfo culture = new CultureInfo("pt-BR");
             DateTimeFormatInfo dtfi = culture.DateTimeFormat;
-            //teste.Text = dtfi.GetDayName(dataEstacionamento.Value.Date.DayOfWeek);
-            teste.Text = ladoComboBox.Text;
-              
+            teste.Text = dtfi.GetDayName(dataEstacionamento.Value.Date.DayOfWeek);
+               
 
            
 

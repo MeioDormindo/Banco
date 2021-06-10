@@ -25,9 +25,9 @@ namespace ProvaFiscal.Model
    
 
 
-        public Estacionamento(String mensagem, String veiculo, String lado,  String dataRegistro, int hora, String data_estacionamento)
+        public Estacionamento(String veiculo, String lado,  String dataRegistro, int hora, String data_estacionamento)
         {
-            this.Mensagem = mensagem;
+            
             this.Veiculo = veiculo;
             this.Lado = lado;
             this.Hora = hora;

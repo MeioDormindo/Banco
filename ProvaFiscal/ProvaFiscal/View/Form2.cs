@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProvaFiscal.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,10 +19,17 @@ namespace ProvaFiscal.View
         }
 
         private void estacionamentoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+
         {
-            this.Validate();
-            this.estacionamentoBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.provaDataSet);
+            
+            String veiculo = veiculoTextBox.Text;
+            String lado = ladoComboBox.Text;
+            String dataRegistro = DateTime.Now.ToString("dd-MM-yyyy");
+            int hora = Convert.ToInt32(horaComboBox.Text);
+            String data_estacionamento = dateTimePicker1.Value.ToShortDateString();
+            Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora,data_estacionamento);
+
+            estacionamento.Cadastro(Estacionamento);
 
         }
 
