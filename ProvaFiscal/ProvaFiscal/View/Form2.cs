@@ -29,7 +29,7 @@ namespace ProvaFiscal.View
             String data_estacionamento = dateTimePicker1.Value.ToShortDateString();
             Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora,data_estacionamento);
 
-            estacionamento.Cadastro(Estacionamento);
+            estacionamento.Cadastro(estacionamento);
 
         }
 
