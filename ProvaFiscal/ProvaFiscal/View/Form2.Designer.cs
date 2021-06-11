@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             System.Windows.Forms.Label veiculoLabel;
             System.Windows.Forms.Label data_estacionamentoLabel;
             System.Windows.Forms.Label ladoLabel;
             System.Windows.Forms.Label horaLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.provaDataSet = new ProvaFiscal.provaDataSet();
             this.estacionamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.estacionamentoTableAdapter = new ProvaFiscal.provaDataSetTableAdapters.EstacionamentoTableAdapter();
@@ -42,18 +42,18 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.estacionamentoBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.estacionamentoDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.veiculoTextBox = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.horaComboBox = new System.Windows.Forms.ComboBox();
             this.ladoComboBox = new System.Windows.Forms.ComboBox();
+            this.horaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataRegistroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.situacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ladoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataestacionamentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.veiculoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estacionamentoDataGridView = new System.Windows.Forms.DataGridView();
             veiculoLabel = new System.Windows.Forms.Label();
             data_estacionamentoLabel = new System.Windows.Forms.Label();
             ladoLabel = new System.Windows.Forms.Label();
@@ -64,6 +64,42 @@
             this.estacionamentoBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoDataGridView)).BeginInit();
             this.SuspendLayout();
+            // 
+            // veiculoLabel
+            // 
+            veiculoLabel.AutoSize = true;
+            veiculoLabel.Location = new System.Drawing.Point(134, 25);
+            veiculoLabel.Name = "veiculoLabel";
+            veiculoLabel.Size = new System.Drawing.Size(45, 13);
+            veiculoLabel.TabIndex = 4;
+            veiculoLabel.Text = "Veiculo:";
+            // 
+            // data_estacionamentoLabel
+            // 
+            data_estacionamentoLabel.AutoSize = true;
+            data_estacionamentoLabel.Location = new System.Drawing.Point(351, 24);
+            data_estacionamentoLabel.Name = "data_estacionamentoLabel";
+            data_estacionamentoLabel.Size = new System.Drawing.Size(111, 13);
+            data_estacionamentoLabel.TabIndex = 6;
+            data_estacionamentoLabel.Text = "Data estacionamento:";
+            // 
+            // ladoLabel
+            // 
+            ladoLabel.AutoSize = true;
+            ladoLabel.Location = new System.Drawing.Point(667, 24);
+            ladoLabel.Name = "ladoLabel";
+            ladoLabel.Size = new System.Drawing.Size(92, 13);
+            ladoLabel.TabIndex = 8;
+            ladoLabel.Text = "Lado estacionado";
+            // 
+            // horaLabel
+            // 
+            horaLabel.AutoSize = true;
+            horaLabel.Location = new System.Drawing.Point(553, 24);
+            horaLabel.Name = "horaLabel";
+            horaLabel.Size = new System.Drawing.Size(30, 13);
+            horaLabel.TabIndex = 14;
+            horaLabel.Text = "Hora";
             // 
             // provaDataSet
             // 
@@ -114,6 +150,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -121,7 +158,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 20);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // estacionamentoBindingNavigatorSaveItem
@@ -129,79 +166,9 @@
             this.estacionamentoBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.estacionamentoBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("estacionamentoBindingNavigatorSaveItem.Image")));
             this.estacionamentoBindingNavigatorSaveItem.Name = "estacionamentoBindingNavigatorSaveItem";
-            this.estacionamentoBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 23);
+            this.estacionamentoBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.estacionamentoBindingNavigatorSaveItem.Text = "Save Data";
             this.estacionamentoBindingNavigatorSaveItem.Click += new System.EventHandler(this.estacionamentoBindingNavigatorSaveItem_Click);
-            // 
-            // estacionamentoDataGridView
-            // 
-            this.estacionamentoDataGridView.AutoGenerateColumns = false;
-            this.estacionamentoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.estacionamentoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7});
-            this.estacionamentoDataGridView.DataSource = this.estacionamentoBindingSource;
-            this.estacionamentoDataGridView.Location = new System.Drawing.Point(0, 87);
-            this.estacionamentoDataGridView.Name = "estacionamentoDataGridView";
-            this.estacionamentoDataGridView.Size = new System.Drawing.Size(808, 434);
-            this.estacionamentoDataGridView.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Veiculo";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Veiculo";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Data_estacionamento";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Data_estacionamento";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Lado";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Lado";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Situacao";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Situacao";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "DataRegistro";
-            this.dataGridViewTextBoxColumn6.HeaderText = "DataRegistro";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "hora";
-            this.dataGridViewTextBoxColumn7.HeaderText = "hora";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            // 
-            // veiculoLabel
-            // 
-            veiculoLabel.AutoSize = true;
-            veiculoLabel.Location = new System.Drawing.Point(134, 25);
-            veiculoLabel.Name = "veiculoLabel";
-            veiculoLabel.Size = new System.Drawing.Size(45, 13);
-            veiculoLabel.TabIndex = 4;
-            veiculoLabel.Text = "Veiculo:";
             // 
             // veiculoTextBox
             // 
@@ -210,33 +177,6 @@
             this.veiculoTextBox.Name = "veiculoTextBox";
             this.veiculoTextBox.Size = new System.Drawing.Size(301, 20);
             this.veiculoTextBox.TabIndex = 5;
-            // 
-            // data_estacionamentoLabel
-            // 
-            data_estacionamentoLabel.AutoSize = true;
-            data_estacionamentoLabel.Location = new System.Drawing.Point(351, 24);
-            data_estacionamentoLabel.Name = "data_estacionamentoLabel";
-            data_estacionamentoLabel.Size = new System.Drawing.Size(111, 13);
-            data_estacionamentoLabel.TabIndex = 6;
-            data_estacionamentoLabel.Text = "Data estacionamento:";
-            // 
-            // ladoLabel
-            // 
-            ladoLabel.AutoSize = true;
-            ladoLabel.Location = new System.Drawing.Point(667, 24);
-            ladoLabel.Name = "ladoLabel";
-            ladoLabel.Size = new System.Drawing.Size(92, 13);
-            ladoLabel.TabIndex = 8;
-            ladoLabel.Text = "Lado estacionado";
-            // 
-            // horaLabel
-            // 
-            horaLabel.AutoSize = true;
-            horaLabel.Location = new System.Drawing.Point(553, 24);
-            horaLabel.Name = "horaLabel";
-            horaLabel.Size = new System.Drawing.Size(30, 13);
-            horaLabel.TabIndex = 14;
-            horaLabel.Text = "Hora";
             // 
             // dateTimePicker1
             // 
@@ -292,6 +232,77 @@
             this.ladoComboBox.Size = new System.Drawing.Size(121, 21);
             this.ladoComboBox.TabIndex = 18;
             // 
+            // horaDataGridViewTextBoxColumn
+            // 
+            this.horaDataGridViewTextBoxColumn.DataPropertyName = "hora";
+            this.horaDataGridViewTextBoxColumn.HeaderText = "hora";
+            this.horaDataGridViewTextBoxColumn.Name = "horaDataGridViewTextBoxColumn";
+            this.horaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataRegistroDataGridViewTextBoxColumn
+            // 
+            this.dataRegistroDataGridViewTextBoxColumn.DataPropertyName = "DataRegistro";
+            this.dataRegistroDataGridViewTextBoxColumn.HeaderText = "DataRegistro";
+            this.dataRegistroDataGridViewTextBoxColumn.Name = "dataRegistroDataGridViewTextBoxColumn";
+            this.dataRegistroDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // situacaoDataGridViewTextBoxColumn
+            // 
+            this.situacaoDataGridViewTextBoxColumn.DataPropertyName = "Situacao";
+            this.situacaoDataGridViewTextBoxColumn.HeaderText = "Situacao";
+            this.situacaoDataGridViewTextBoxColumn.Name = "situacaoDataGridViewTextBoxColumn";
+            this.situacaoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ladoDataGridViewTextBoxColumn
+            // 
+            this.ladoDataGridViewTextBoxColumn.DataPropertyName = "Lado";
+            this.ladoDataGridViewTextBoxColumn.HeaderText = "Lado";
+            this.ladoDataGridViewTextBoxColumn.Name = "ladoDataGridViewTextBoxColumn";
+            this.ladoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataestacionamentoDataGridViewTextBoxColumn
+            // 
+            this.dataestacionamentoDataGridViewTextBoxColumn.DataPropertyName = "Data_estacionamento";
+            this.dataestacionamentoDataGridViewTextBoxColumn.HeaderText = "Data_estacionamento";
+            this.dataestacionamentoDataGridViewTextBoxColumn.Name = "dataestacionamentoDataGridViewTextBoxColumn";
+            this.dataestacionamentoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // veiculoDataGridViewTextBoxColumn
+            // 
+            this.veiculoDataGridViewTextBoxColumn.DataPropertyName = "Veiculo";
+            this.veiculoDataGridViewTextBoxColumn.HeaderText = "Veiculo";
+            this.veiculoDataGridViewTextBoxColumn.Name = "veiculoDataGridViewTextBoxColumn";
+            this.veiculoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // estacionamentoDataGridView
+            // 
+            this.estacionamentoDataGridView.AllowUserToAddRows = false;
+            this.estacionamentoDataGridView.AllowUserToDeleteRows = false;
+            this.estacionamentoDataGridView.AutoGenerateColumns = false;
+            this.estacionamentoDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.estacionamentoDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.veiculoDataGridViewTextBoxColumn,
+            this.dataestacionamentoDataGridViewTextBoxColumn,
+            this.ladoDataGridViewTextBoxColumn,
+            this.situacaoDataGridViewTextBoxColumn,
+            this.dataRegistroDataGridViewTextBoxColumn,
+            this.horaDataGridViewTextBoxColumn});
+            this.estacionamentoDataGridView.DataSource = this.estacionamentoBindingSource;
+            this.estacionamentoDataGridView.Location = new System.Drawing.Point(0, 87);
+            this.estacionamentoDataGridView.Name = "estacionamentoDataGridView";
+            this.estacionamentoDataGridView.ReadOnly = true;
+            this.estacionamentoDataGridView.Size = new System.Drawing.Size(808, 434);
+            this.estacionamentoDataGridView.TabIndex = 1;
+            this.estacionamentoDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.estacionamentoDataGridView_CellContentClick);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,17 +342,19 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton estacionamentoBindingNavigatorSaveItem;
-        private System.Windows.Forms.DataGridView estacionamentoDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.TextBox veiculoTextBox;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox horaComboBox;
         private System.Windows.Forms.ComboBox ladoComboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn horaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataRegistroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn situacaoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ladoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataestacionamentoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn veiculoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView estacionamentoDataGridView;
     }
 }

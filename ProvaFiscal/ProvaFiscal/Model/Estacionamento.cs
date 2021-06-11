@@ -83,10 +83,10 @@ namespace ProvaFiscal.Model
 
         public void Atualizarsituacao()
         {
-            CultureInfo culture = new CultureInfo("pt-BR");
-            DateTimeFormatInfo dtfi = culture.DateTimeFormat;
+            CultureInfo cultura = new CultureInfo("pt-BR");
+            DateTimeFormatInfo convertedata = cultura.DateTimeFormat;
             DateTime oDate = Convert.ToDateTime(this.Data_estacionamento);
-            String dia = dtfi.GetDayName(oDate.Date.DayOfWeek);
+            String dia = convertedata.GetDayName(oDate.Date.DayOfWeek);
 
             if (this.Hora >= 7 && this.Hora <= 20)
             {

@@ -40,5 +40,15 @@ namespace ProvaFiscal.View
             this.estacionamentoTableAdapter.Fill(this.provaDataSet.Estacionamento);
 
         }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void estacionamentoDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
