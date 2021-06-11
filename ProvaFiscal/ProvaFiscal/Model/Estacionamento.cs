@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using ProvaFiscal.DAO;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProvaFiscal.Model
 {
@@ -45,7 +46,7 @@ namespace ProvaFiscal.Model
 
         public String ConverteHora(int hora)
         {
-            return  hora + ":00h";
+            return hora + ":00h";
         }
 
 
@@ -58,14 +59,14 @@ namespace ProvaFiscal.Model
                 // comando sql insert
                 cmd.CommandText = "insert into estacionamento (Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora)  values(@veiculo, @Data_estacionamento,  @lado, @situacao, @DataRegistro, @hora) ";
 
-            // parametros
-            cmd.Parameters.AddWithValue("veiculo", this.Veiculo);
-            cmd.Parameters.AddWithValue("Data_estacionamento", this.Data_estacionamento);
-            cmd.Parameters.AddWithValue("lado", this.Lado);
-            cmd.Parameters.AddWithValue("situacao", this.Situacao);
-            cmd.Parameters.AddWithValue("DataRegistro", this.DataRegistro);
-            cmd.Parameters.AddWithValue("hora", this.ConverteHora(this.Hora));
-    
+                // parametros
+                cmd.Parameters.AddWithValue("veiculo", this.Veiculo);
+                cmd.Parameters.AddWithValue("Data_estacionamento", this.Data_estacionamento);
+                cmd.Parameters.AddWithValue("lado", this.Lado);
+                cmd.Parameters.AddWithValue("situacao", this.Situacao);
+                cmd.Parameters.AddWithValue("DataRegistro", this.DataRegistro);
+                cmd.Parameters.AddWithValue("hora", this.ConverteHora(this.Hora));
+
 
                 try
                 {
@@ -76,7 +77,7 @@ namespace ProvaFiscal.Model
                     //desconectar
                     conexa.desconectar();
                     // msg positiva
-                    this.Mensagem = "O "+this.Veiculo+" Cadastrado com sucesso!";
+                    this.Mensagem = "O " + this.Veiculo + " Cadastrado com sucesso!";
                     this.Situacao = "";
 
                 }
@@ -227,41 +228,49 @@ namespace ProvaFiscal.Model
 
         public void verificarExiste()
         {
-            
-            
+
+
             try
             {
-                cmd.CommandText = "SELECT COUNT(1) FROM estacionamento WHERE Veiculo = @veiculo2 and hora = @hora2 and Data_estacionamento = @Data_estacionamento2 ";
-                cmd.Parameters.AddWithValue("hora2", this.Hora);
+                cmd.CommandText = @"SELECT COUNT(1) FROM estacionamento WHERE Veiculo = @veiculo2 and hora like @hora2 and Data_estacionamento = @Data_estacionamento2";
+                cmd.Parameters.AddWithValue("hora2", this.ConverteHora(this.Hora));
                 cmd.Parameters.AddWithValue("veiculo2", this.Veiculo);
                 cmd.Parameters.AddWithValue("Data_estacionamento2", this.Data_estacionamento);
                 cmd.Connection = conexa.conectar();
 
                 string result = cmd.ExecuteScalar().ToString();
+                
+                
+                string[] dadosDoCadastro = result.Split(':');
 
-                conexa.desconectar();
-
-                if (Int16.Parse(result) >=  1)
+                if (Int16.Parse(dadosDoCadastro[0]) >= 1)
                 {
-                    this.Mensagem = ("O "+this.Veiculo+", já esta cadastrado as "+this.Hora+" horas. Por favor cadastrar outro horario.");
-                   
+                    this.Mensagem = ("O " + this.Veiculo + ", já esta cadastrado as " + this.ConverteHora(this.Hora) + " horas. Por favor cadastrar outro horario.");
+
                     this.existe = 2;
+                    conexa.desconectar();
                 }
                 else
                 {
-                   
+                    conexa.desconectar();
                     this.existe = 1;
                 }
             }
             catch (SqlException e)
             {
-                this.Mensagem = ("Erro ao executar verificador e "+cmd.ExecuteScalar()+"");
+                conexa.desconectar();
+                this.Mensagem = ("Erro ao executar verificador e " + cmd.ExecuteScalar() + "");
             }
-           
         }
-
     }
 }
+
+
+
+
+
+
+
 
 
 

@@ -45,48 +45,75 @@ namespace ProvaFiscal.View
 
 
         }
-
-        private void estacionamentoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-
+        public bool CampoVazio(Control controle, String campo)
         {
-            
-            String veiculo = veiculoTextBox.Text;
-            String lado = ladoComboBox.Text;
-            String dataRegistro = DateTime.Now.ToString("dd MMMM yyyy HH:mm");
-            int hora = Convert.ToInt32(horaComboBox.Text);
-            String data_estacionamento = dateTimePicker1.Value.ToShortDateString();
-
-            if (hora >= 0 & hora <= 23)
+            if (controle.Text == "")
             {
-                Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento);
+                MessageBox.Show("O campo " + campo + " é obrigatortio");
+                controle.Focus();
+                return true;
 
-                estacionamento.Cadastro(estacionamento);
-
-                MessageBox.Show(estacionamento.Mensagem);
-                CarreTabela();
             }
             else
             {
-                MessageBox.Show("Hora invalida!!!");
+                return false;
             }
 
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'provaDataSet.Estacionamento' table. You can move, or remove it, as needed.
-            this.estacionamentoTableAdapter.Fill(this.provaDataSet.Estacionamento);
+            private void estacionamentoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
 
-        }
-
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
 
+            if (CampoVazio(veiculoTextBox, "Veiculo"))
+            {
+                return;
+            }
+            else if (CampoVazio(horaComboBox, "Hora"))
+            {
+                return;
+            }
+            else if (CampoVazio(ladoComboBox, "Lado Estacionamento")){
+                return;
+            }
+            
+
+
+            else {
+
+
+                String veiculo = veiculoTextBox.Text;
+                String lado = ladoComboBox.Text;
+                String dataRegistro = DateTime.Now.ToString("dd MMMM yyyy HH:mm");
+                int hora = Convert.ToInt32(horaComboBox.Text);
+                String data_estacionamento = dateTimePicker1.Value.ToShortDateString();
+
+                if (hora >= 0 & hora <= 23)
+                {
+                    Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento);
+
+                    estacionamento.Cadastro(estacionamento);
+
+                    MessageBox.Show(estacionamento.Mensagem);
+                    CarreTabela();
+
+                    veiculoTextBox.Text = "";
+                    ladoComboBox.Text = "";
+                    horaComboBox.Text = "";
+
+                }
+                else
+                {
+                    MessageBox.Show("Hora invalida!!!");
+                }
+                
+            }
+
+            
+        }
+            }
         }
 
-        private void estacionamentoDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        
+    
 
-        }
-    }
-}

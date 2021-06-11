@@ -54,6 +54,7 @@
             this.ladoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.situacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataRegistroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             veiculoLabel = new System.Windows.Forms.Label();
             data_estacionamentoLabel = new System.Windows.Forms.Label();
             ladoLabel = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).BeginInit();
             this.estacionamentoBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // veiculoLabel
@@ -79,18 +81,18 @@
             data_estacionamentoLabel.AutoSize = true;
             data_estacionamentoLabel.Location = new System.Drawing.Point(351, 24);
             data_estacionamentoLabel.Name = "data_estacionamentoLabel";
-            data_estacionamentoLabel.Size = new System.Drawing.Size(111, 13);
+            data_estacionamentoLabel.Size = new System.Drawing.Size(112, 13);
             data_estacionamentoLabel.TabIndex = 6;
-            data_estacionamentoLabel.Text = "Data estacionamento:";
+            data_estacionamentoLabel.Text = "Data Estacionamento:";
             // 
             // ladoLabel
             // 
             ladoLabel.AutoSize = true;
             ladoLabel.Location = new System.Drawing.Point(667, 24);
             ladoLabel.Name = "ladoLabel";
-            ladoLabel.Size = new System.Drawing.Size(92, 13);
+            ladoLabel.Size = new System.Drawing.Size(93, 13);
             ladoLabel.TabIndex = 8;
-            ladoLabel.Text = "Lado estacionado";
+            ladoLabel.Text = "Lado Estacionado";
             // 
             // horaLabel
             // 
@@ -150,7 +152,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+           
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -177,6 +179,7 @@
             this.veiculoTextBox.Name = "veiculoTextBox";
             this.veiculoTextBox.Size = new System.Drawing.Size(301, 20);
             this.veiculoTextBox.TabIndex = 5;
+            
             // 
             // dateTimePicker1
             // 
@@ -306,6 +309,10 @@
             this.dataRegistroDataGridViewTextBoxColumn.ReadOnly = true;
             this.dataRegistroDataGridViewTextBoxColumn.Width = 150;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -323,13 +330,14 @@
             this.Controls.Add(this.estacionamentoBindingNavigator);
             this.Name = "Cadastro";
             this.Text = "Cadastro";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).EndInit();
             this.estacionamentoBindingNavigator.ResumeLayout(false);
             this.estacionamentoBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,5 +367,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ladoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn situacaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataRegistroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
