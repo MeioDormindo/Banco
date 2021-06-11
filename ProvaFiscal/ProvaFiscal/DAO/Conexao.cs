@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 
-namespace ProvaFiscal.Model
+namespace ProvaFiscal.DAO
 {
     public class Conexao
     {
@@ -17,11 +17,6 @@ namespace ProvaFiscal.Model
 ";
 
         }
-
-
-       
-
-
 
 
         public SqlConnection conectar()

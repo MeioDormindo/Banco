@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using ProvaFiscal.DAO;
 using System.Threading.Tasks;
 
 namespace ProvaFiscal.Model
@@ -42,6 +43,12 @@ namespace ProvaFiscal.Model
 
         }
 
+        public String ConverteHora(int hora)
+        {
+            return  hora + ":00h";
+        }
+
+
         public void Cadastro(Estacionamento estacionamento)
         {
             verificarExiste();
@@ -57,7 +64,7 @@ namespace ProvaFiscal.Model
             cmd.Parameters.AddWithValue("lado", this.Lado);
             cmd.Parameters.AddWithValue("situacao", this.Situacao);
             cmd.Parameters.AddWithValue("DataRegistro", this.DataRegistro);
-            cmd.Parameters.AddWithValue("hora", this.Hora);
+            cmd.Parameters.AddWithValue("hora", this.ConverteHora(this.Hora));
     
 
                 try
@@ -252,6 +259,7 @@ namespace ProvaFiscal.Model
             }
            
         }
+
     }
 }
 

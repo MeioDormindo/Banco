@@ -61,7 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Conexao.cs" />
+    <Compile Include="DAO\Conexao.cs" />
     <Compile Include="Model\Estacionamento.cs" />
     <Compile Include="Controller\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
