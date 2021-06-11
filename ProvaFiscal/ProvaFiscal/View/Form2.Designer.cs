@@ -50,7 +50,6 @@
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.veiculoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataestacionamentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.horaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ladoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.situacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataRegistroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -151,38 +150,42 @@
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-           
+            this.bindingNavigatorAddNewItem.Text = "Cadastrar";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorDeleteItem
             // 
             this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Enabled = false;
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Text = "Cancelar";
+            this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
             // estacionamentoBindingNavigatorSaveItem
             // 
             this.estacionamentoBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.estacionamentoBindingNavigatorSaveItem.Enabled = false;
             this.estacionamentoBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("estacionamentoBindingNavigatorSaveItem.Image")));
             this.estacionamentoBindingNavigatorSaveItem.Name = "estacionamentoBindingNavigatorSaveItem";
             this.estacionamentoBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.estacionamentoBindingNavigatorSaveItem.Text = "Save Data";
+            this.estacionamentoBindingNavigatorSaveItem.Text = "Salvar";
             this.estacionamentoBindingNavigatorSaveItem.Click += new System.EventHandler(this.estacionamentoBindingNavigatorSaveItem_Click);
             // 
             // veiculoTextBox
             // 
             this.veiculoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.estacionamentoBindingSource, "Veiculo", true));
+            this.veiculoTextBox.Enabled = false;
             this.veiculoTextBox.Location = new System.Drawing.Point(0, 41);
             this.veiculoTextBox.Name = "veiculoTextBox";
             this.veiculoTextBox.Size = new System.Drawing.Size(301, 20);
             this.veiculoTextBox.TabIndex = 5;
-            
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(318, 40);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -192,6 +195,7 @@
             // horaComboBox
             // 
             this.horaComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.estacionamentoBindingSource, "hora", true));
+            this.horaComboBox.Enabled = false;
             this.horaComboBox.FormattingEnabled = true;
             this.horaComboBox.Items.AddRange(new object[] {
             "1",
@@ -221,10 +225,12 @@
             this.horaComboBox.Name = "horaComboBox";
             this.horaComboBox.Size = new System.Drawing.Size(121, 21);
             this.horaComboBox.TabIndex = 17;
+            this.horaComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.horaComboBox_KeyPress);
             // 
             // ladoComboBox
             // 
             this.ladoComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.estacionamentoBindingSource, "Lado", true));
+            this.ladoComboBox.Enabled = false;
             this.ladoComboBox.FormattingEnabled = true;
             this.ladoComboBox.Items.AddRange(new object[] {
             "Esquerdo",
@@ -244,7 +250,6 @@
             this.idDataGridViewTextBoxColumn,
             this.veiculoDataGridViewTextBoxColumn,
             this.dataestacionamentoDataGridViewTextBoxColumn,
-            this.horaDataGridViewTextBoxColumn,
             this.ladoDataGridViewTextBoxColumn,
             this.situacaoDataGridViewTextBoxColumn,
             this.dataRegistroDataGridViewTextBoxColumn});
@@ -278,14 +283,6 @@
             this.dataestacionamentoDataGridViewTextBoxColumn.Name = "dataestacionamentoDataGridViewTextBoxColumn";
             this.dataestacionamentoDataGridViewTextBoxColumn.ReadOnly = true;
             this.dataestacionamentoDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // horaDataGridViewTextBoxColumn
-            // 
-            this.horaDataGridViewTextBoxColumn.DataPropertyName = "Hora";
-            this.horaDataGridViewTextBoxColumn.HeaderText = "Hora";
-            this.horaDataGridViewTextBoxColumn.Name = "horaDataGridViewTextBoxColumn";
-            this.horaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.horaDataGridViewTextBoxColumn.Width = 50;
             // 
             // ladoDataGridViewTextBoxColumn
             // 
@@ -330,7 +327,6 @@
             this.Controls.Add(this.estacionamentoBindingNavigator);
             this.Name = "Cadastro";
             this.Text = "Cadastro";
-            
             ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).EndInit();

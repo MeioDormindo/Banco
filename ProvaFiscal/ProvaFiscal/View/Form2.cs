@@ -19,6 +19,7 @@ namespace ProvaFiscal.View
         {
             InitializeComponent();
            CarreTabela();
+            horaComboBox.MaxLength = (2);
         }
 
         public void CarreTabela()
@@ -61,6 +62,25 @@ namespace ProvaFiscal.View
 
         }
 
+        public bool campoLado()
+        {
+            if (ladoComboBox.Text == "Direta") {
+                return true;
+            }
+            else if(ladoComboBox.Text == "Esquerda"){
+
+                return true;
+                }
+            else{
+                MessageBox.Show("O campo Lado Estacionado está incorreto.");
+                
+                return false;
+
+            }
+
+
+            }
+
             private void estacionamentoBindingNavigatorSaveItem_Click(object sender, EventArgs e)
 
         {
@@ -76,11 +96,8 @@ namespace ProvaFiscal.View
             else if (CampoVazio(ladoComboBox, "Lado Estacionamento")){
                 return;
             }
-            
-
 
             else {
-
 
                 String veiculo = veiculoTextBox.Text;
                 String lado = ladoComboBox.Text;
@@ -88,19 +105,21 @@ namespace ProvaFiscal.View
                 int hora = Convert.ToInt32(horaComboBox.Text);
                 String data_estacionamento = dateTimePicker1.Value.ToShortDateString();
 
-                if (hora >= 0 & hora <= 23)
+                if ((hora >= 0 & hora <= 23))
                 {
-                    Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento);
+                    if (campoLado()){
 
-                    estacionamento.Cadastro(estacionamento);
 
-                    MessageBox.Show(estacionamento.Mensagem);
-                    CarreTabela();
 
-                    veiculoTextBox.Text = "";
-                    ladoComboBox.Text = "";
-                    horaComboBox.Text = "";
+                        Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento);
 
+                        estacionamento.Cadastro(estacionamento);
+
+                        MessageBox.Show(estacionamento.Mensagem);
+                        CarreTabela();
+                        Desativar();
+                        
+                    }
                 }
                 else
                 {
@@ -111,7 +130,52 @@ namespace ProvaFiscal.View
 
             
         }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            Ativar();
+
+        }
+
+        private void Desativar()
+        {
+            estacionamentoBindingNavigatorSaveItem.Enabled = false;
+            veiculoTextBox.Enabled = false;
+            ladoComboBox.Enabled = false;
+            horaComboBox.Enabled = false;
+            dateTimePicker1.Enabled = false;
+            bindingNavigatorAddNewItem.Enabled = true;
+            bindingNavigatorDeleteItem.Enabled = false;
+
+            veiculoTextBox.Text = "";
+            ladoComboBox.Text = "";
+            horaComboBox.Text = "";
+        }
+        private void Ativar()
+        {
+            estacionamentoBindingNavigatorSaveItem.Enabled = true;
+            veiculoTextBox.Enabled = true;
+            ladoComboBox.Enabled = true;
+            horaComboBox.Enabled = true;
+            dateTimePicker1.Enabled = true;
+            bindingNavigatorAddNewItem.Enabled = false;
+            bindingNavigatorDeleteItem.Enabled = true;
+
+        }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            Desativar();
+        }
+
+        private void horaComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
             }
+        }
+    }
         }
 
         
