@@ -64,10 +64,10 @@ namespace ProvaFiscal.View
 
         public bool campoLado()
         {
-            if (ladoComboBox.Text == "Direta") {
+            if (ladoComboBox.Text == "Direito") {
                 return true;
             }
-            else if(ladoComboBox.Text == "Esquerda"){
+            else if(ladoComboBox.Text == "Esquerdo"){
 
                 return true;
                 }

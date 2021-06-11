@@ -61,7 +61,7 @@ namespace ProvaFiscal.Model
 
                 // parametros
                 cmd.Parameters.AddWithValue("veiculo", this.Veiculo);
-                cmd.Parameters.AddWithValue("Data_estacionamento", this.Data_estacionamento);
+                cmd.Parameters.AddWithValue("Data_estacionamento", converterData(this.Data_estacionamento));
                 cmd.Parameters.AddWithValue("lado", this.Lado);
                 cmd.Parameters.AddWithValue("situacao", this.Situacao);
                 cmd.Parameters.AddWithValue("DataRegistro", this.DataRegistro);
@@ -86,6 +86,15 @@ namespace ProvaFiscal.Model
                     this.Mensagem = "Erro ao tentar se conectar ao banco";
                 }
             }
+        }
+
+        public String converterData(String data)
+        {
+            CultureInfo cultura = new CultureInfo("pt-BR");
+            DateTimeFormatInfo convertedata = cultura.DateTimeFormat;
+            DateTime date = Convert.ToDateTime(data);
+            String novadata = date.ToString("dddd") + ", dia " + date.ToString("dd") + " de " + date.ToString("MMMM");
+            return novadata;
         }
 
 
