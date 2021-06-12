@@ -16,16 +16,17 @@ namespace ProvaFiscal.Model
         protected Conexao conexa = new Conexao();
         protected SqlCommand cmd = new SqlCommand();
 
-        public int id;
+        protected int id;
         public String Mensagem;
-        public String Veiculo;
-        public String Data_estacionamento;
-        public int Hora;
-        public String Lado;
-        public String Situacao;
-        public String DataRegistro;
-        public int existe;
-        public String Regra;
+        protected String Veiculo;
+        protected String Data_estacionamento;
+        protected int Hora;
+        protected String Lado;
+        protected String Situacao;
+        protected String DataRegistro;
+        protected int existe;
+        protected String Regra;
+        protected int tipo;
 
 
 
@@ -37,17 +38,23 @@ namespace ProvaFiscal.Model
             this.Hora = hora;
             this.Data_estacionamento = data_estacionamento;
             this.DataRegistro = dataRegistro;
+            this.tipo = tipoMulta;
 
-            if (tipoMulta == 1)
+            if (this.tipo == 1)
             {
+                
                 this.Regra = "Dia da semana";
                 Atualizarsituacao2();
             }
-            else
+            if (this.tipo == 2) 
             {
                 this.Regra = "Número do dia";
                 Atualizarsituacao();
 
+            }
+            else
+            {
+                this.Mensagem =("Erro");
             }
 
         }
@@ -243,14 +250,12 @@ namespace ProvaFiscal.Model
 
         public void verificarExiste()
         {
-
-
             try
             {
                 cmd.CommandText = @"SELECT COUNT(1) FROM estacionamento WHERE Veiculo = @veiculo2 and hora like @hora2 and Data_estacionamento = @Data_estacionamento2";
                 cmd.Parameters.AddWithValue("hora2", this.ConverteHora(this.Hora));
                 cmd.Parameters.AddWithValue("veiculo2", this.Veiculo);
-                cmd.Parameters.AddWithValue("Data_estacionamento2", this.Data_estacionamento);
+                cmd.Parameters.AddWithValue("Data_estacionamento2", converterData(this.Data_estacionamento));
                 cmd.Connection = conexa.conectar();
 
                 string result = cmd.ExecuteScalar().ToString();

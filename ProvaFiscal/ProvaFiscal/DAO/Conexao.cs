@@ -13,7 +13,8 @@ namespace ProvaFiscal.DAO
         SqlConnection con = new SqlConnection();
         public Conexao()
         {
-            con.ConnectionString = @"Data Source=DESKTOP-4H70OMV\METAPOSTO;Initial Catalog=Prova;User ID=sa;Password=kb74Uwfcq/DRfmAGZd8pkghc52rMpXAGBZXVQOr4pkpIpsK5nt6pDCJE+EF+47wZY8aX87eqCtt/F9vjKBHMNk8jJ/2oVXOtGBcUEMn9cb1txI0Fiv7N+LFzgcfWGJuW
+            con.ConnectionString = @"Data Source=DESKTOP-4H70OMV\METAPOSTO;Initial Catalog=Prova;Persist Security Info=True;User ID=sa;Password=kb74Uwfcq/DRfmAGZd8pkghc52rMpXAGBZXVQOr4pkpIpsK5nt6pDCJE+EF+47wZY8aX87eqCtt/F9vjKBHMNk8jJ/2oVXOtGBcUEMn9cb1txI0Fiv7N+LFzgcfWGJuW
+
 ";
 
         }

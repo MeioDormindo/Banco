@@ -35,6 +35,8 @@
             System.Windows.Forms.Label horaLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cadastro));
             this.estacionamentoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.estacionamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.provaDataSet = new ProvaFiscal.provaDataSet();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.estacionamentoBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
@@ -43,9 +45,6 @@
             this.horaComboBox = new System.Windows.Forms.ComboBox();
             this.ladoComboBox = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.estacionamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.provaDataSet = new ProvaFiscal.provaDataSet();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.veiculoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataestacionamentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,16 +53,17 @@
             this.situacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataRegistroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Regra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             veiculoLabel = new System.Windows.Forms.Label();
             data_estacionamentoLabel = new System.Windows.Forms.Label();
             ladoLabel = new System.Windows.Forms.Label();
             horaLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).BeginInit();
             this.estacionamentoBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // veiculoLabel
@@ -123,6 +123,16 @@
             this.estacionamentoBindingNavigator.TabIndex = 0;
             this.estacionamentoBindingNavigator.Text = "bindingNavigator1";
             // 
+            // estacionamentoBindingSource
+            // 
+            this.estacionamentoBindingSource.DataMember = "Estacionamento";
+            this.estacionamentoBindingSource.DataSource = this.provaDataSet;
+            // 
+            // provaDataSet
+            // 
+            this.provaDataSet.DataSetName = "provaDataSet";
+            this.provaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -136,6 +146,7 @@
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Enabled = false;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -168,6 +179,7 @@
             this.dateTimePicker1.Enabled = false;
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(318, 40);
+            this.dateTimePicker1.MinDate = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(173, 20);
             this.dateTimePicker1.TabIndex = 16;
@@ -242,20 +254,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(776, 448);
             this.dataGridView1.TabIndex = 19;
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // estacionamentoBindingSource
-            // 
-            this.estacionamentoBindingSource.DataMember = "Estacionamento";
-            this.estacionamentoBindingSource.DataSource = this.provaDataSet;
-            // 
-            // provaDataSet
-            // 
-            this.provaDataSet.DataSetName = "provaDataSet";
-            this.provaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
@@ -319,6 +317,10 @@
             this.Regra.ReadOnly = true;
             this.Regra.Width = 110;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,10 +341,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).EndInit();
             this.estacionamentoBindingNavigator.ResumeLayout(false);
             this.estacionamentoBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
