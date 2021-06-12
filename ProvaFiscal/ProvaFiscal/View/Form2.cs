@@ -104,7 +104,7 @@ namespace ProvaFiscal.View
 
             else { 
 
-                String veiculo = veiculoTextBox.Text;
+                String veiculo = "Veiculo " + veiculoTextBox.Text;
                 String lado = ladoComboBox.Text;
                 String dataRegistro = DateTime.Now.ToString("dd MMMM yyyy HH:mm");
                 int hora = Convert.ToInt32(horaComboBox.Text);
@@ -206,6 +206,14 @@ namespace ProvaFiscal.View
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             Desativar();
+        }
+
+        private void veiculoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
         }
