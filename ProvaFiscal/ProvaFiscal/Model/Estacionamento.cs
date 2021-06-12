@@ -16,7 +16,8 @@ namespace ProvaFiscal.Model
         private Conexao conexa = new Conexao();
         private SqlCommand cmd = new SqlCommand();
 
-        private int id;
+        
+
         private String Mensagem;
         private String Veiculo;
         private String Data_estacionamento;
