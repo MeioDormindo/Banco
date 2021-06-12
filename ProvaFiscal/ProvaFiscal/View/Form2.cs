@@ -13,8 +13,11 @@ using System.Windows.Forms;
 
 namespace ProvaFiscal.View
 {
+
     public partial class Cadastro : Form
     {
+        int tipoMulta;
+
         public Cadastro()
         {
             InitializeComponent();
@@ -85,6 +88,8 @@ namespace ProvaFiscal.View
 
         {
 
+            String data_estacionamento = "";
+
             if (CampoVazio(veiculoTextBox, "Veiculo"))
             {
                 return;
@@ -97,27 +102,39 @@ namespace ProvaFiscal.View
                 return;
             }
 
-            else {
+            else { 
 
                 String veiculo = veiculoTextBox.Text;
                 String lado = ladoComboBox.Text;
                 String dataRegistro = DateTime.Now.ToString("dd MMMM yyyy HH:mm");
                 int hora = Convert.ToInt32(horaComboBox.Text);
-                String data_estacionamento = dateTimePicker1.Value.ToShortDateString();
+                data_estacionamento = dateTimePicker1.Value.ToShortDateString();
 
                 if ((hora >= 0 & hora <= 23))
                 {
                     if (campoLado()){
 
 
+                        DialogResult confirm = MessageBox.Show("Deseja Cadastrar realmente?", "Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
 
-                        Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento);
+                        if (confirm.ToString().ToUpper() == "YES")
+                        {
 
-                        estacionamento.Cadastro(estacionamento);
+                            Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento,tipoMulta);
 
-                        MessageBox.Show(estacionamento.Mensagem);
-                        CarreTabela();
-                        Desativar();
+                            estacionamento.Cadastro(estacionamento);
+
+                            MessageBox.Show(estacionamento.Mensagem);
+                            CarreTabela();
+                            Desativar();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cadastro Cancelado");
+                            Desativar();
+                        }
+
+
                         
                     }
                 }
@@ -131,12 +148,7 @@ namespace ProvaFiscal.View
             
         }
 
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            Ativar();
-
-        }
-
+       
         private void Desativar()
         {
             estacionamentoBindingNavigatorSaveItem.Enabled = false;
@@ -144,12 +156,11 @@ namespace ProvaFiscal.View
             ladoComboBox.Enabled = false;
             horaComboBox.Enabled = false;
             dateTimePicker1.Enabled = false;
-            bindingNavigatorAddNewItem.Enabled = true;
-            bindingNavigatorDeleteItem.Enabled = false;
 
-            veiculoTextBox.Text = "";
-            ladoComboBox.Text = "";
-            horaComboBox.Text = "";
+            toolStripButton1.Enabled = true;
+            toolStripButton2.Enabled = false;
+
+            
         }
         private void Ativar()
         {
@@ -158,15 +169,15 @@ namespace ProvaFiscal.View
             ladoComboBox.Enabled = true;
             horaComboBox.Enabled = true;
             dateTimePicker1.Enabled = true;
-            bindingNavigatorAddNewItem.Enabled = false;
-            bindingNavigatorDeleteItem.Enabled = true;
+            toolStripButton1.Enabled = false;
+            toolStripButton2.Enabled = true;
+
+            veiculoTextBox.Text = "";
+            ladoComboBox.Text = "";
+            horaComboBox.Text = "";
 
         }
 
-        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
-        {
-            Desativar();
-        }
 
         private void horaComboBox_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -174,6 +185,27 @@ namespace ProvaFiscal.View
             {
                 e.Handled = true;
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            DialogResult confirm = MessageBox.Show("Multas baseadas no dia(Segunda, Terça, Quarta) escolha sim ou escolha não para multas baseados em numero do dia(1,15,22 diferenciando irmpar ou par) ?", "Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+            if (confirm.ToString().ToUpper() == "YES")
+            {
+                Ativar();
+                tipoMulta = 1;
+            }
+            else
+            {
+                tipoMulta = 2;
+                Ativar();
+            }
+               
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Desativar();
         }
     }
         }

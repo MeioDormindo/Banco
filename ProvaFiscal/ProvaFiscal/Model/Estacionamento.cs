@@ -28,7 +28,7 @@ namespace ProvaFiscal.Model
 
 
 
-        public Estacionamento(String veiculo, String lado, String dataRegistro, int hora, String data_estacionamento)
+        public Estacionamento(String veiculo, String lado, String dataRegistro, int hora, String data_estacionamento, int tipoMulta)
         {
 
             this.Veiculo = veiculo;
@@ -36,7 +36,17 @@ namespace ProvaFiscal.Model
             this.Hora = hora;
             this.Data_estacionamento = data_estacionamento;
             this.DataRegistro = dataRegistro;
-            Atualizarsituacao();
+
+            if (tipoMulta == 1)
+            {
+                Atualizarsituacao2();
+            }
+            else
+            {
+                Atualizarsituacao();
+
+            }
+
         }
 
         public Estacionamento()
@@ -53,6 +63,7 @@ namespace ProvaFiscal.Model
         public void Cadastro(Estacionamento estacionamento)
         {
             verificarExiste();
+            
 
             if (this.existe == 1)
             {
@@ -221,15 +232,7 @@ namespace ProvaFiscal.Model
                     this.Situacao = "Regular";
 
                 }
-                else if (dia.Contains("Domingo"))
-                {
-
-                    this.Situacao = "Regular";
-
-                }
-
-
-
+               
             }
             else
                 this.Situacao = "Regular";
@@ -271,7 +274,95 @@ namespace ProvaFiscal.Model
                 this.Mensagem = ("Erro ao executar verificador e " + cmd.ExecuteScalar() + "");
             }
         }
+
+
+        public void Atualizarsituacao2()
+        {
+            CultureInfo cultura = new CultureInfo("pt-BR");
+            DateTimeFormatInfo convertedata = cultura.DateTimeFormat;
+            DateTime oDate = Convert.ToDateTime(this.Data_estacionamento);
+            String dia = convertedata.GetDayName(oDate.Date.DayOfWeek);
+
+            if (this.Hora >= 7 && this.Hora <= 20)
+            {
+
+                if (dia.Contains("domingo"))
+                {
+
+                    this.Situacao = "Regular";
+
+                }
+                else if (dia.Contains("segunda"))
+                {
+
+                    if (this.Lado == "Direito")
+
+                        this.Situacao = "Regular";
+                    else
+                        this.Situacao = "Irregular";
+
+                }
+                else if (dia.Contains("terça"))
+                {
+
+                    if (this.Lado == "Direito")
+                    {
+
+                        this.Situacao = "Irregular";
+                    }
+                    else
+                        this.Situacao = "Regular";
+
+
+                }
+                else if (dia.Contains("quar"))
+                {
+
+                    if (this.Lado == "Direito")
+                    {
+                        this.Situacao = "Regular";
+                    }
+                    else
+                        this.Situacao = "Irregular";
+
+                }
+                else if (dia.Contains("quinta"))
+                {
+
+                    if (this.Lado == "Direito")
+                        this.Situacao = "Irregular";
+                    else
+                        this.Situacao = "Regular";
+
+
+
+                }
+                else if (dia.Contains("sexta"))
+                {
+
+                    if (this.Lado == "Direito")
+                        this.Situacao = "Regular";
+                    else
+                        this.Situacao = "Irregular";
+
+
+                }
+                else if (dia.Contains("sabado"))
+                {
+
+                    this.Situacao = "Regular";
+
+                }
+                
+            }
+            else
+                this.Situacao = "Regular";
+        }
     }
+
+
+
+
 }
 
 
