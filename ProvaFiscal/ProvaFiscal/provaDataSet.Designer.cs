@@ -285,13 +285,15 @@ namespace ProvaFiscal {
             
             private global::System.Data.DataColumn columnData_estacionamento;
             
+            private global::System.Data.DataColumn columnhora;
+            
             private global::System.Data.DataColumn columnLado;
             
             private global::System.Data.DataColumn columnSituacao;
             
             private global::System.Data.DataColumn columnDataRegistro;
             
-            private global::System.Data.DataColumn columnhora;
+            private global::System.Data.DataColumn columnRegra;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -352,6 +354,14 @@ namespace ProvaFiscal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn horaColumn {
+                get {
+                    return this.columnhora;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn LadoColumn {
                 get {
                     return this.columnLado;
@@ -376,9 +386,9 @@ namespace ProvaFiscal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn horaColumn {
+            public global::System.Data.DataColumn RegraColumn {
                 get {
-                    return this.columnhora;
+                    return this.columnRegra;
                 }
             }
             
@@ -419,16 +429,17 @@ namespace ProvaFiscal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public EstacionamentoRow AddEstacionamentoRow(string Veiculo, string Data_estacionamento, string Lado, string Situacao, string DataRegistro, int hora) {
+            public EstacionamentoRow AddEstacionamentoRow(string Veiculo, string Data_estacionamento, string hora, string Lado, string Situacao, string DataRegistro, string Regra) {
                 EstacionamentoRow rowEstacionamentoRow = ((EstacionamentoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Veiculo,
                         Data_estacionamento,
+                        hora,
                         Lado,
                         Situacao,
                         DataRegistro,
-                        hora};
+                        Regra};
                 rowEstacionamentoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEstacionamentoRow);
                 return rowEstacionamentoRow;
@@ -461,10 +472,11 @@ namespace ProvaFiscal {
                 this.columnId = base.Columns["Id"];
                 this.columnVeiculo = base.Columns["Veiculo"];
                 this.columnData_estacionamento = base.Columns["Data_estacionamento"];
+                this.columnhora = base.Columns["hora"];
                 this.columnLado = base.Columns["Lado"];
                 this.columnSituacao = base.Columns["Situacao"];
                 this.columnDataRegistro = base.Columns["DataRegistro"];
-                this.columnhora = base.Columns["hora"];
+                this.columnRegra = base.Columns["Regra"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -476,14 +488,16 @@ namespace ProvaFiscal {
                 base.Columns.Add(this.columnVeiculo);
                 this.columnData_estacionamento = new global::System.Data.DataColumn("Data_estacionamento", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnData_estacionamento);
+                this.columnhora = new global::System.Data.DataColumn("hora", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhora);
                 this.columnLado = new global::System.Data.DataColumn("Lado", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLado);
                 this.columnSituacao = new global::System.Data.DataColumn("Situacao", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSituacao);
                 this.columnDataRegistro = new global::System.Data.DataColumn("DataRegistro", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDataRegistro);
-                this.columnhora = new global::System.Data.DataColumn("hora", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnhora);
+                this.columnRegra = new global::System.Data.DataColumn("Regra", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRegra);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -496,13 +510,14 @@ namespace ProvaFiscal {
                 this.columnVeiculo.MaxLength = 50;
                 this.columnData_estacionamento.AllowDBNull = false;
                 this.columnData_estacionamento.MaxLength = 50;
+                this.columnhora.AllowDBNull = false;
+                this.columnhora.MaxLength = 2147483647;
                 this.columnLado.AllowDBNull = false;
                 this.columnLado.MaxLength = 10;
                 this.columnSituacao.AllowDBNull = false;
                 this.columnSituacao.MaxLength = 20;
                 this.columnDataRegistro.AllowDBNull = false;
-                this.columnDataRegistro.MaxLength = 50;
-                this.columnhora.AllowDBNull = false;
+                this.columnDataRegistro.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -678,6 +693,17 @@ namespace ProvaFiscal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string hora {
+                get {
+                    return ((string)(this[this.tableEstacionamento.horaColumn]));
+                }
+                set {
+                    this[this.tableEstacionamento.horaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string Lado {
                 get {
                     return ((string)(this[this.tableEstacionamento.LadoColumn]));
@@ -711,13 +737,30 @@ namespace ProvaFiscal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int hora {
+            public string Regra {
                 get {
-                    return ((int)(this[this.tableEstacionamento.horaColumn]));
+                    try {
+                        return ((string)(this[this.tableEstacionamento.RegraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Regra\' in table \'Estacionamento\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tableEstacionamento.horaColumn] = value;
+                    this[this.tableEstacionamento.RegraColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRegraNull() {
+                return this.IsNull(this.tableEstacionamento.RegraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRegraNull() {
+                this[this.tableEstacionamento.RegraColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -883,51 +926,49 @@ namespace ProvaFiscal.provaDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("Veiculo", "Veiculo");
             tableMapping.ColumnMappings.Add("Data_estacionamento", "Data_estacionamento");
+            tableMapping.ColumnMappings.Add("hora", "hora");
             tableMapping.ColumnMappings.Add("Lado", "Lado");
             tableMapping.ColumnMappings.Add("Situacao", "Situacao");
             tableMapping.ColumnMappings.Add("DataRegistro", "DataRegistro");
-            tableMapping.ColumnMappings.Add("hora", "hora");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Estacionamento] WHERE (([Id] = @Original_Id) AND ([Veiculo] = @Original_Veiculo) AND ([Data_estacionamento] = @Original_Data_estacionamento) AND ([Lado] = @Original_Lado) AND ([Situacao] = @Original_Situacao) AND ([DataRegistro] = @Original_DataRegistro) AND ([hora] = @Original_hora))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Estacionamento] WHERE (([Id] = @Original_Id) AND ([Veiculo] = " +
+                "@Original_Veiculo) AND ([Data_estacionamento] = @Original_Data_estacionamento) A" +
+                "ND ([Lado] = @Original_Lado) AND ([Situacao] = @Original_Situacao))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Veiculo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Veiculo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Data_estacionamento", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Data_estacionamento", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Lado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Lado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Situacao", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Situacao", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DataRegistro", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRegistro", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_hora", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hora", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Estacionamento] ([Veiculo], [Data_estacionamento], [Lado], [Situacao], [DataRegistro], [hora]) VALUES (@Veiculo, @Data_estacionamento, @Lado, @Situacao, @DataRegistro, @hora);
-SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM Estacionamento WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Estacionamento] ([Veiculo], [Data_estacionamento], [hora], [Lado], [Situacao], [DataRegistro]) VALUES (@Veiculo, @Data_estacionamento, @hora, @Lado, @Situacao, @DataRegistro);
+SELECT Id, Veiculo, Data_estacionamento, hora, Lado, Situacao, DataRegistro FROM Estacionamento WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Veiculo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Veiculo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data_estacionamento", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Data_estacionamento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hora", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hora", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Lado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Lado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Situacao", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Situacao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataRegistro", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRegistro", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hora", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hora", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Estacionamento] SET [Veiculo] = @Veiculo, [Data_estacionamento] = @Data_estacionamento, [Lado] = @Lado, [Situacao] = @Situacao, [DataRegistro] = @DataRegistro, [hora] = @hora WHERE (([Id] = @Original_Id) AND ([Veiculo] = @Original_Veiculo) AND ([Data_estacionamento] = @Original_Data_estacionamento) AND ([Lado] = @Original_Lado) AND ([Situacao] = @Original_Situacao) AND ([DataRegistro] = @Original_DataRegistro) AND ([hora] = @Original_hora));
-SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM Estacionamento WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Estacionamento] SET [Veiculo] = @Veiculo, [Data_estacionamento] = @Data_estacionamento, [hora] = @hora, [Lado] = @Lado, [Situacao] = @Situacao, [DataRegistro] = @DataRegistro WHERE (([Id] = @Original_Id) AND ([Veiculo] = @Original_Veiculo) AND ([Data_estacionamento] = @Original_Data_estacionamento) AND ([Lado] = @Original_Lado) AND ([Situacao] = @Original_Situacao));
+SELECT Id, Veiculo, Data_estacionamento, hora, Lado, Situacao, DataRegistro FROM Estacionamento WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Veiculo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Veiculo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Data_estacionamento", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Data_estacionamento", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hora", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hora", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Lado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Lado", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Situacao", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Situacao", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DataRegistro", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRegistro", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hora", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hora", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Veiculo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Veiculo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Data_estacionamento", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Data_estacionamento", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Lado", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Lado", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Situacao", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Situacao", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_DataRegistro", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "DataRegistro", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_hora", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hora", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -944,7 +985,7 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM " +
+            this._commandCollection[0].CommandText = "SELECT Id, Veiculo, Data_estacionamento, hora, Lado, Situacao, DataRegistro FROM " +
                 "dbo.Estacionamento";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
@@ -1006,7 +1047,7 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_Id, string Original_Veiculo, string Original_Data_estacionamento, string Original_Lado, string Original_Situacao, string Original_DataRegistro, int Original_hora) {
+        public virtual int Delete(long Original_Id, string Original_Veiculo, string Original_Data_estacionamento, string Original_Lado, string Original_Situacao) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_Id));
             if ((Original_Veiculo == null)) {
                 throw new global::System.ArgumentNullException("Original_Veiculo");
@@ -1032,13 +1073,6 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Situacao));
             }
-            if ((Original_DataRegistro == null)) {
-                throw new global::System.ArgumentNullException("Original_DataRegistro");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_DataRegistro));
-            }
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_hora));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1059,7 +1093,7 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Veiculo, string Data_estacionamento, string Lado, string Situacao, string DataRegistro, int hora) {
+        public virtual int Insert(string Veiculo, string Data_estacionamento, string hora, string Lado, string Situacao, string DataRegistro) {
             if ((Veiculo == null)) {
                 throw new global::System.ArgumentNullException("Veiculo");
             }
@@ -1072,25 +1106,30 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Data_estacionamento));
             }
+            if ((hora == null)) {
+                throw new global::System.ArgumentNullException("hora");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(hora));
+            }
             if ((Lado == null)) {
                 throw new global::System.ArgumentNullException("Lado");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Lado));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Lado));
             }
             if ((Situacao == null)) {
                 throw new global::System.ArgumentNullException("Situacao");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Situacao));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(Situacao));
             }
             if ((DataRegistro == null)) {
                 throw new global::System.ArgumentNullException("DataRegistro");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(DataRegistro));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(DataRegistro));
             }
-            this.Adapter.InsertCommand.Parameters[5].Value = ((int)(hora));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1111,7 +1150,7 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Veiculo, string Data_estacionamento, string Lado, string Situacao, string DataRegistro, int hora, long Original_Id, string Original_Veiculo, string Original_Data_estacionamento, string Original_Lado, string Original_Situacao, string Original_DataRegistro, int Original_hora, long Id) {
+        public virtual int Update(string Veiculo, string Data_estacionamento, string hora, string Lado, string Situacao, string DataRegistro, long Original_Id, string Original_Veiculo, string Original_Data_estacionamento, string Original_Lado, string Original_Situacao, long Id) {
             if ((Veiculo == null)) {
                 throw new global::System.ArgumentNullException("Veiculo");
             }
@@ -1124,25 +1163,30 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Data_estacionamento));
             }
+            if ((hora == null)) {
+                throw new global::System.ArgumentNullException("hora");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(hora));
+            }
             if ((Lado == null)) {
                 throw new global::System.ArgumentNullException("Lado");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Lado));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Lado));
             }
             if ((Situacao == null)) {
                 throw new global::System.ArgumentNullException("Situacao");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Situacao));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Situacao));
             }
             if ((DataRegistro == null)) {
                 throw new global::System.ArgumentNullException("DataRegistro");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(DataRegistro));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(DataRegistro));
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(hora));
             this.Adapter.UpdateCommand.Parameters[6].Value = ((long)(Original_Id));
             if ((Original_Veiculo == null)) {
                 throw new global::System.ArgumentNullException("Original_Veiculo");
@@ -1168,14 +1212,7 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Situacao));
             }
-            if ((Original_DataRegistro == null)) {
-                throw new global::System.ArgumentNullException("Original_DataRegistro");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_DataRegistro));
-            }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_hora));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((long)(Id));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((long)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1196,8 +1233,8 @@ SELECT Id, Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora FROM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Veiculo, string Data_estacionamento, string Lado, string Situacao, string DataRegistro, int hora, long Original_Id, string Original_Veiculo, string Original_Data_estacionamento, string Original_Lado, string Original_Situacao, string Original_DataRegistro, int Original_hora) {
-            return this.Update(Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora, Original_Id, Original_Veiculo, Original_Data_estacionamento, Original_Lado, Original_Situacao, Original_DataRegistro, Original_hora, Original_Id);
+        public virtual int Update(string Veiculo, string Data_estacionamento, string hora, string Lado, string Situacao, string DataRegistro, long Original_Id, string Original_Veiculo, string Original_Data_estacionamento, string Original_Lado, string Original_Situacao) {
+            return this.Update(Veiculo, Data_estacionamento, hora, Lado, Situacao, DataRegistro, Original_Id, Original_Veiculo, Original_Data_estacionamento, Original_Lado, Original_Situacao, Original_Id);
         }
     }
     

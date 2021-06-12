@@ -189,7 +189,7 @@ namespace ProvaFiscal.View
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show("Multas baseadas no dia(Segunda, Terça, Quarta) escolha sim ou escolha não para multas baseados em numero do dia(1,15,22 diferenciando irmpar ou par) ?", "Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+            DialogResult confirm = MessageBox.Show("Multas baseadas no dia da semana selecione (SIM), se selecionado NÂO as multas será baseadas no dia.", "Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
             if (confirm.ToString().ToUpper() == "YES")
             {
                 Ativar();

@@ -25,6 +25,7 @@ namespace ProvaFiscal.Model
         public String Situacao;
         public String DataRegistro;
         public int existe;
+        public String Regra;
 
 
 
@@ -39,10 +40,12 @@ namespace ProvaFiscal.Model
 
             if (tipoMulta == 1)
             {
+                this.Regra = "Dia da semana";
                 Atualizarsituacao2();
             }
             else
             {
+                this.Regra = "Número do dia";
                 Atualizarsituacao();
 
             }
@@ -68,7 +71,7 @@ namespace ProvaFiscal.Model
             if (this.existe == 1)
             {
                 // comando sql insert
-                cmd.CommandText = "insert into estacionamento (Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora)  values(@veiculo, @Data_estacionamento,  @lado, @situacao, @DataRegistro, @hora) ";
+                cmd.CommandText = "insert into estacionamento (Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora, Regra)  values(@veiculo, @Data_estacionamento,  @lado, @situacao, @DataRegistro, @hora, @Regra) ";
 
                 // parametros
                 cmd.Parameters.AddWithValue("veiculo", this.Veiculo);
@@ -77,7 +80,7 @@ namespace ProvaFiscal.Model
                 cmd.Parameters.AddWithValue("situacao", this.Situacao);
                 cmd.Parameters.AddWithValue("DataRegistro", this.DataRegistro);
                 cmd.Parameters.AddWithValue("hora", this.ConverteHora(this.Hora));
-
+                cmd.Parameters.AddWithValue("Regra", this.Regra);
 
                 try
                 {

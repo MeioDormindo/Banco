@@ -34,10 +34,6 @@
             System.Windows.Forms.Label ladoLabel;
             System.Windows.Forms.Label horaLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cadastro));
-            this.provaDataSet = new ProvaFiscal.provaDataSet();
-            this.estacionamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.estacionamentoTableAdapter = new ProvaFiscal.provaDataSetTableAdapters.EstacionamentoTableAdapter();
-            this.tableAdapterManager = new ProvaFiscal.provaDataSetTableAdapters.TableAdapterManager();
             this.estacionamentoBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -47,6 +43,9 @@
             this.horaComboBox = new System.Windows.Forms.ComboBox();
             this.ladoComboBox = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.estacionamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.provaDataSet = new ProvaFiscal.provaDataSet();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.veiculoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataestacionamentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,17 +53,17 @@
             this.ladoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.situacaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataRegistroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Regra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             veiculoLabel = new System.Windows.Forms.Label();
             data_estacionamentoLabel = new System.Windows.Forms.Label();
             ladoLabel = new System.Windows.Forms.Label();
             horaLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).BeginInit();
             this.estacionamentoBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // veiculoLabel
@@ -103,26 +102,6 @@
             horaLabel.TabIndex = 14;
             horaLabel.Text = "Hora";
             // 
-            // provaDataSet
-            // 
-            this.provaDataSet.DataSetName = "provaDataSet";
-            this.provaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // estacionamentoBindingSource
-            // 
-            this.estacionamentoBindingSource.DataMember = "Estacionamento";
-            this.estacionamentoBindingSource.DataSource = this.provaDataSet;
-            // 
-            // estacionamentoTableAdapter
-            // 
-            this.estacionamentoTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.EstacionamentoTableAdapter = this.estacionamentoTableAdapter;
-            this.tableAdapterManager.UpdateOrder = ProvaFiscal.provaDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // estacionamentoBindingNavigator
             // 
             this.estacionamentoBindingNavigator.AddNewItem = null;
@@ -140,7 +119,7 @@
             this.estacionamentoBindingNavigator.MovePreviousItem = null;
             this.estacionamentoBindingNavigator.Name = "estacionamentoBindingNavigator";
             this.estacionamentoBindingNavigator.PositionItem = null;
-            this.estacionamentoBindingNavigator.Size = new System.Drawing.Size(809, 25);
+            this.estacionamentoBindingNavigator.Size = new System.Drawing.Size(800, 25);
             this.estacionamentoBindingNavigator.TabIndex = 0;
             this.estacionamentoBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -254,13 +233,28 @@
             this.hora,
             this.ladoDataGridViewTextBoxColumn,
             this.situacaoDataGridViewTextBoxColumn,
-            this.dataRegistroDataGridViewTextBoxColumn});
+            this.dataRegistroDataGridViewTextBoxColumn,
+            this.Regra});
             this.dataGridView1.DataSource = this.estacionamentoBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 81);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 81);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(797, 448);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 448);
             this.dataGridView1.TabIndex = 19;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // estacionamentoBindingSource
+            // 
+            this.estacionamentoBindingSource.DataMember = "Estacionamento";
+            this.estacionamentoBindingSource.DataSource = this.provaDataSet;
+            // 
+            // provaDataSet
+            // 
+            this.provaDataSet.DataSetName = "provaDataSet";
+            this.provaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -276,7 +270,6 @@
             this.veiculoDataGridViewTextBoxColumn.HeaderText = "Veículo";
             this.veiculoDataGridViewTextBoxColumn.Name = "veiculoDataGridViewTextBoxColumn";
             this.veiculoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.veiculoDataGridViewTextBoxColumn.Width = 150;
             // 
             // dataestacionamentoDataGridViewTextBoxColumn
             // 
@@ -284,7 +277,7 @@
             this.dataestacionamentoDataGridViewTextBoxColumn.HeaderText = "Estacionado";
             this.dataestacionamentoDataGridViewTextBoxColumn.Name = "dataestacionamentoDataGridViewTextBoxColumn";
             this.dataestacionamentoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dataestacionamentoDataGridViewTextBoxColumn.Width = 170;
+            this.dataestacionamentoDataGridViewTextBoxColumn.Width = 150;
             // 
             // hora
             // 
@@ -300,6 +293,7 @@
             this.ladoDataGridViewTextBoxColumn.HeaderText = "Lado da rua";
             this.ladoDataGridViewTextBoxColumn.Name = "ladoDataGridViewTextBoxColumn";
             this.ladoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ladoDataGridViewTextBoxColumn.Width = 90;
             // 
             // situacaoDataGridViewTextBoxColumn
             // 
@@ -307,6 +301,7 @@
             this.situacaoDataGridViewTextBoxColumn.HeaderText = "Situação";
             this.situacaoDataGridViewTextBoxColumn.Name = "situacaoDataGridViewTextBoxColumn";
             this.situacaoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.situacaoDataGridViewTextBoxColumn.Width = 80;
             // 
             // dataRegistroDataGridViewTextBoxColumn
             // 
@@ -314,17 +309,21 @@
             this.dataRegistroDataGridViewTextBoxColumn.HeaderText = "Data Registro";
             this.dataRegistroDataGridViewTextBoxColumn.Name = "dataRegistroDataGridViewTextBoxColumn";
             this.dataRegistroDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dataRegistroDataGridViewTextBoxColumn.Width = 150;
+            this.dataRegistroDataGridViewTextBoxColumn.Width = 120;
             // 
-            // errorProvider1
+            // Regra
             // 
-            this.errorProvider1.ContainerControl = this;
+            this.Regra.DataPropertyName = "Regra";
+            this.Regra.HeaderText = "Regra";
+            this.Regra.Name = "Regra";
+            this.Regra.ReadOnly = true;
+            this.Regra.Width = 110;
             // 
             // Cadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 541);
+            this.ClientSize = new System.Drawing.Size(800, 541);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ladoComboBox);
             this.Controls.Add(this.horaComboBox);
@@ -337,13 +336,13 @@
             this.Controls.Add(this.estacionamentoBindingNavigator);
             this.Name = "Cadastro";
             this.Text = "Cadastro";
-            ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingNavigator)).EndInit();
             this.estacionamentoBindingNavigator.ResumeLayout(false);
             this.estacionamentoBindingNavigator.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estacionamentoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.provaDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,8 +352,6 @@
 
         private provaDataSet provaDataSet;
         private System.Windows.Forms.BindingSource estacionamentoBindingSource;
-        private provaDataSetTableAdapters.EstacionamentoTableAdapter estacionamentoTableAdapter;
-        private provaDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.BindingNavigator estacionamentoBindingNavigator;
         private System.Windows.Forms.ToolStripButton estacionamentoBindingNavigatorSaveItem;
         private System.Windows.Forms.TextBox veiculoTextBox;
@@ -375,5 +372,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ladoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn situacaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataRegistroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Regra;
     }
 }
