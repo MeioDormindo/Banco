@@ -13,20 +13,20 @@ namespace ProvaFiscal.Model
     class Estacionamento
     {
 
-        protected Conexao conexa = new Conexao();
-        protected SqlCommand cmd = new SqlCommand();
+        private Conexao conexa = new Conexao();
+        private SqlCommand cmd = new SqlCommand();
 
-        protected int id;
-        public String Mensagem;
-        protected String Veiculo;
-        protected String Data_estacionamento;
-        protected int Hora;
-        protected String Lado;
-        protected String Situacao;
-        protected String DataRegistro;
-        protected int existe;
-        protected String Regra;
-        protected int tipo;
+        private int id;
+        private String Mensagem;
+        private String Veiculo;
+        private String Data_estacionamento;
+        private int Hora;
+        private String Lado;
+        private String Situacao;
+        private String DataRegistro;
+        private int existe;
+        private String Regra;
+        private int tipo;
 
 
 
@@ -116,6 +116,11 @@ namespace ProvaFiscal.Model
             DateTime date = Convert.ToDateTime(data);
             String novadata = date.ToString("dddd") + ", dia " + date.ToString("dd") + " de " + date.ToString("MMMM");
             return novadata;
+        }
+
+        public string ReceberMenssagem()
+        {
+            return this.Mensagem;
         }
 
 

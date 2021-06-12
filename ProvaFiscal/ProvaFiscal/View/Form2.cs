@@ -98,11 +98,13 @@ namespace ProvaFiscal.View
             {
                 return;
             }
-            else if (CampoVazio(ladoComboBox, "Lado Estacionamento")){
+            else if (CampoVazio(ladoComboBox, "Lado Estacionamento"))
+            {
                 return;
             }
 
-            else { 
+            else
+            {
 
                 String veiculo = "Veiculo " + veiculoTextBox.Text;
                 String lado = ladoComboBox.Text;
@@ -110,39 +112,49 @@ namespace ProvaFiscal.View
                 int hora = Convert.ToInt32(horaComboBox.Text);
                 data_estacionamento = dateTimePicker1.Value.ToShortDateString();
 
-                if ((hora >= 0 & hora <= 23))
+                if (dateTimePicker1.Value > DateTime.Now)
                 {
-                    if (campoLado()){
+                    MessageBox.Show("Data de estacionamento maior que data atual! Por favor ajuste.");
 
-
-                        DialogResult confirm = MessageBox.Show("Deseja Cadastrar realmente?", "Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
-
-                        if (confirm.ToString().ToUpper() == "YES")
-                        {
-
-                            Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento,tipoMulta);
-
-                            estacionamento.Cadastro(estacionamento);
-
-                            MessageBox.Show(estacionamento.Mensagem);
-                            CarreTabela();
-                            Desativar();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Cadastro Cancelado");
-                            Desativar();
-                        }
-
-
-                        
-                    }
                 }
                 else
                 {
-                    MessageBox.Show("Hora invalida!!!");
+
+                    if ((hora >= 0 & hora <= 23))
+                    {
+                        if (campoLado())
+                        {
+
+
+                            DialogResult confirm = MessageBox.Show("Deseja Cadastrar realmente?", "Cadastro", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+
+                            if (confirm.ToString().ToUpper() == "YES")
+                            {
+
+                                Estacionamento estacionamento = new Estacionamento(veiculo, lado, dataRegistro, hora, data_estacionamento, tipoMulta);
+
+                                estacionamento.Cadastro(estacionamento);
+
+                                MessageBox.Show(estacionamento.ReceberMenssagem());
+                                CarreTabela();
+                                Desativar();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cadastro Cancelado");
+                                Desativar();
+                            }
+
+
+
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hora invalida!!!");
+                    }
+
                 }
-                
             }
 
             
