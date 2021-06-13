@@ -16,8 +16,6 @@ namespace ProvaFiscal.Model
         private Conexao conexa = new Conexao();
         private SqlCommand cmd = new SqlCommand();
 
-        
-
         private String Mensagem;
         private String Veiculo;
         private String Data_estacionamento;
@@ -242,7 +240,7 @@ namespace ProvaFiscal.Model
                     else
                         this.Situacao = "Irregular";
                 }
-                else if (dia.Contains("sabado"))
+                else if (dia.Contains("sábado"))
                 {
 
                     this.Situacao = "Regular";
@@ -361,7 +359,7 @@ namespace ProvaFiscal.Model
 
 
                 }
-                else if (dia.Contains("sabado"))
+                else if (dia.Contains("sábado"))
                 {
 
                     this.Situacao = "Regular";
