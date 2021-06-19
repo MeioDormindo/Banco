@@ -16,13 +16,13 @@ namespace ProvaFiscal.Model
         private Conexao conexa = new Conexao();
         private SqlCommand cmd = new SqlCommand();
 
-        private String Mensagem;
-        private String Veiculo;
-        private String Data_estacionamento;
-        private int Hora;
-        private String Lado;
-        private String Situacao;
-        private String DataRegistro;
+        private String mensagem;
+        private String veiculo;
+        private String data_estacionamento;
+        private int hora;
+        private String lado;
+        private String situacao;
+        private String dataRegistro;
         private int existe;
         private String Regra;
         private int tipo;
@@ -32,11 +32,11 @@ namespace ProvaFiscal.Model
         public Estacionamento(String veiculo, String lado, String dataRegistro, int hora, String data_estacionamento, int tipoMulta)
         {
 
-            this.Veiculo = veiculo;
-            this.Lado = lado;
-            this.Hora = hora;
-            this.Data_estacionamento = data_estacionamento;
-            this.DataRegistro = dataRegistro;
+            this.veiculo = veiculo;
+            this.lado = lado;
+            this.hora = hora;
+            this.data_estacionamento = data_estacionamento;
+            this.dataRegistro = dataRegistro;
             this.tipo = tipoMulta;
 
             if (this.tipo == 1)
@@ -53,7 +53,7 @@ namespace ProvaFiscal.Model
             }
             else
             {
-                this.Mensagem =("Erro");
+                this.mensagem =("Erro");
             }
 
         }
@@ -80,12 +80,12 @@ namespace ProvaFiscal.Model
                 cmd.CommandText = "insert into estacionamento (Veiculo, Data_estacionamento, Lado, Situacao, DataRegistro, hora, Regra)  values(@veiculo, @Data_estacionamento,  @lado, @situacao, @DataRegistro, @hora, @Regra) ";
 
                 // parametros
-                cmd.Parameters.AddWithValue("veiculo", this.Veiculo);
-                cmd.Parameters.AddWithValue("Data_estacionamento", converterData(this.Data_estacionamento));
-                cmd.Parameters.AddWithValue("lado", this.Lado);
-                cmd.Parameters.AddWithValue("situacao", this.Situacao);
-                cmd.Parameters.AddWithValue("DataRegistro", this.DataRegistro);
-                cmd.Parameters.AddWithValue("hora", this.ConverteHora(this.Hora));
+                cmd.Parameters.AddWithValue("veiculo", this.veiculo);
+                cmd.Parameters.AddWithValue("Data_estacionamento", converterData(this.data_estacionamento));
+                cmd.Parameters.AddWithValue("lado", this.lado);
+                cmd.Parameters.AddWithValue("situacao", this.situacao);
+                cmd.Parameters.AddWithValue("DataRegistro", this.dataRegistro);
+                cmd.Parameters.AddWithValue("hora", this.ConverteHora(this.hora));
                 cmd.Parameters.AddWithValue("Regra", this.Regra);
 
                 try
@@ -97,13 +97,13 @@ namespace ProvaFiscal.Model
                     //desconectar
                     conexa.desconectar();
                     // msg positiva
-                    this.Mensagem = "O " + this.Veiculo + " Cadastrado com sucesso!";
-                    this.Situacao = "";
+                    this.mensagem = "O " + this.veiculo + " Cadastrado com sucesso!";
+                    this.situacao = "";
 
                 }
                 catch (SqlException e)
                 {
-                    this.Mensagem = "Erro ao tentar se conectar ao banco";
+                    this.mensagem = "Erro ao tentar se conectar ao banco";
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace ProvaFiscal.Model
 
         public string ReceberMenssagem()
         {
-            return this.Mensagem;
+            return this.mensagem;
         }
 
 
@@ -127,129 +127,129 @@ namespace ProvaFiscal.Model
         {
             CultureInfo cultura = new CultureInfo("pt-BR");
             DateTimeFormatInfo convertedata = cultura.DateTimeFormat;
-            DateTime oDate = Convert.ToDateTime(this.Data_estacionamento);
+            DateTime oDate = Convert.ToDateTime(this.data_estacionamento);
             String dia = convertedata.GetDayName(oDate.Date.DayOfWeek);
 
-            if (this.Hora >= 7 && this.Hora <= 20)
+            if (this.hora >= 7 && this.hora <= 20)
             {
 
                 if (dia.Contains("domingo"))
                 {
 
-                    this.Situacao = "Regular";
+                    this.situacao = "Regular";
 
                 }
                 else if (dia.Contains("segunda"))
                 {
                     if (oDate.Date.Day % 2 == 0)
                     {
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
 
-                            this.Situacao = "Irregular";
+                            this.situacao = "Irregular";
                         else
-                            this.Situacao = "Regular";
+                            this.situacao = "Regular";
                     }
                     else
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
                     {
 
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
                     }
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
 
                 }
                 else if (dia.Contains("terça"))
                 {
                     if (oDate.Date.Day % 2 == 0)
                     {
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
                         {
 
-                            this.Situacao = "Irregular";
+                            this.situacao = "Irregular";
                         }
                         else
-                            this.Situacao = "Regular";
+                            this.situacao = "Regular";
 
                     }
                     else
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
                     {
 
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
                     }
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
                 }
                 else if (dia.Contains("quar"))
                 {
                     if (oDate.Date.Day % 2 == 0)
                     {
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
                         {
-                            this.Situacao = "Irregular";
+                            this.situacao = "Irregular";
                         }
                         else
-                            this.Situacao = "Regular";
+                            this.situacao = "Regular";
 
                     }
                     else
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
                     {
 
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
                     }
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
                 }
                 else if (dia.Contains("quinta"))
                 {
                     if (oDate.Date.Day % 2 == 0)
                     {
-                        if (this.Lado == "Direito")
-                            this.Situacao = "Irregular";
+                        if (this.lado == "Direito")
+                            this.situacao = "Irregular";
                         else
-                            this.Situacao = "Regular";
+                            this.situacao = "Regular";
 
                     }
                     else
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
                     {
 
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
                     }
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
                 }
                 else if (dia.Contains("sexta"))
                 {
                     if (oDate.Date.Day % 2 == 0)
                     {
-                        if (this.Lado == "Direito")
-                            this.Situacao = "Irregular";
+                        if (this.lado == "Direito")
+                            this.situacao = "Irregular";
                         else
-                            this.Situacao = "Regular";
+                            this.situacao = "Regular";
 
                     }
                     else
-                        if (this.Lado == "Direito")
+                        if (this.lado == "Direito")
                     {
 
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
                     }
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
                 }
                 else if (dia.Contains("sábado"))
                 {
 
-                    this.Situacao = "Regular";
+                    this.situacao = "Regular";
 
                 }
                
             }
             else
-                this.Situacao = "Regular";
+                this.situacao = "Regular";
         }
 
         public void verificarExiste()
@@ -257,9 +257,9 @@ namespace ProvaFiscal.Model
             try
             {
                 cmd.CommandText = @"SELECT COUNT(1) FROM estacionamento WHERE Veiculo = @veiculo2 and hora like @hora2 and Data_estacionamento = @Data_estacionamento2";
-                cmd.Parameters.AddWithValue("hora2", this.ConverteHora(this.Hora));
-                cmd.Parameters.AddWithValue("veiculo2", this.Veiculo);
-                cmd.Parameters.AddWithValue("Data_estacionamento2", converterData(this.Data_estacionamento));
+                cmd.Parameters.AddWithValue("hora2", this.ConverteHora(this.hora));
+                cmd.Parameters.AddWithValue("veiculo2", this.veiculo);
+                cmd.Parameters.AddWithValue("Data_estacionamento2", converterData(this.data_estacionamento));
                 cmd.Connection = conexa.conectar();
 
                 string result = cmd.ExecuteScalar().ToString();
@@ -269,7 +269,7 @@ namespace ProvaFiscal.Model
 
                 if (Int16.Parse(dadosDoCadastro[0]) >= 1)
                 {
-                    this.Mensagem = ("O " + this.Veiculo + ", já esta cadastrado as " + this.ConverteHora(this.Hora) + " horas. Por favor cadastrar outro horario.");
+                    this.mensagem = ("O " + this.veiculo + ", já esta cadastrado as " + this.ConverteHora(this.hora) + " horas. Por favor cadastrar outro horario.");
 
                     this.existe = 2;
                     conexa.desconectar();
@@ -283,7 +283,7 @@ namespace ProvaFiscal.Model
             catch (SqlException e)
             {
                 conexa.desconectar();
-                this.Mensagem = ("Erro ao executar verificador e " + cmd.ExecuteScalar() + "");
+                this.mensagem = ("Erro ao executar verificador e " + cmd.ExecuteScalar() + "");
             }
         }
 
@@ -292,59 +292,59 @@ namespace ProvaFiscal.Model
         {
             CultureInfo cultura = new CultureInfo("pt-BR");
             DateTimeFormatInfo convertedata = cultura.DateTimeFormat;
-            DateTime oDate = Convert.ToDateTime(this.Data_estacionamento);
+            DateTime oDate = Convert.ToDateTime(this.data_estacionamento);
             String dia = convertedata.GetDayName(oDate.Date.DayOfWeek);
 
-            if (this.Hora >= 7 && this.Hora <= 20)
+            if (this.hora >= 7 && this.hora <= 20)
             {
 
                 if (dia.Contains("domingo"))
                 {
 
-                    this.Situacao = "Regular";
+                    this.situacao = "Regular";
 
                 }
                 else if (dia.Contains("segunda"))
                 {
 
-                    if (this.Lado == "Direito")
+                    if (this.lado == "Direito")
 
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
 
                 }
                 else if (dia.Contains("terça"))
                 {
 
-                    if (this.Lado == "Direito")
+                    if (this.lado == "Direito")
                     {
 
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
                     }
                     else
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
 
 
                 }
                 else if (dia.Contains("quar"))
                 {
 
-                    if (this.Lado == "Direito")
+                    if (this.lado == "Direito")
                     {
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
                     }
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
 
                 }
                 else if (dia.Contains("quinta"))
                 {
 
-                    if (this.Lado == "Direito")
-                        this.Situacao = "Irregular";
+                    if (this.lado == "Direito")
+                        this.situacao = "Irregular";
                     else
-                        this.Situacao = "Regular";
+                        this.situacao = "Regular";
 
 
 
@@ -352,23 +352,23 @@ namespace ProvaFiscal.Model
                 else if (dia.Contains("sexta"))
                 {
 
-                    if (this.Lado == "Direito")
-                        this.Situacao = "Regular";
+                    if (this.lado == "Direito")
+                        this.situacao = "Regular";
                     else
-                        this.Situacao = "Irregular";
+                        this.situacao = "Irregular";
 
 
                 }
                 else if (dia.Contains("sábado"))
                 {
 
-                    this.Situacao = "Regular";
+                    this.situacao = "Regular";
 
                 }
                 
             }
             else
-                this.Situacao = "Regular";
+                this.situacao = "Regular";
         }
     }
 

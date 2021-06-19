@@ -87,20 +87,20 @@
             // ladoLabel
             // 
             ladoLabel.AutoSize = true;
-            ladoLabel.Location = new System.Drawing.Point(667, 24);
+            ladoLabel.Location = new System.Drawing.Point(682, 25);
             ladoLabel.Name = "ladoLabel";
-            ladoLabel.Size = new System.Drawing.Size(93, 13);
+            ladoLabel.Size = new System.Drawing.Size(74, 13);
             ladoLabel.TabIndex = 8;
-            ladoLabel.Text = "Lado Estacionado";
+            ladoLabel.Text = "Lado Da Rua:";
             // 
             // horaLabel
             // 
             horaLabel.AutoSize = true;
             horaLabel.Location = new System.Drawing.Point(553, 24);
             horaLabel.Name = "horaLabel";
-            horaLabel.Size = new System.Drawing.Size(30, 13);
+            horaLabel.Size = new System.Drawing.Size(33, 13);
             horaLabel.TabIndex = 14;
-            horaLabel.Text = "Hora";
+            horaLabel.Text = "Hora:";
             // 
             // estacionamentoBindingNavigator
             // 
