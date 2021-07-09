@@ -31,7 +31,7 @@ namespace ProvaFiscal.View
              SqlCommand cmd = new SqlCommand();
              DataSet dados = new DataSet();
 
-             cmd.CommandText = " select * from Estacionamento order by DataRegistro desc";
+             cmd.CommandText = " select * from Estacionamento order by convert(datetime,convert(varchar,DataRegistro),103)  desc";
 
             
             cmd.Connection = conexa.conectar();

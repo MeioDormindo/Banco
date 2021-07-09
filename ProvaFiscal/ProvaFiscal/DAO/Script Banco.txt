@@ -1,0 +1,10 @@
+CREATE TABLE [dbo].[Estacionamento] (
+    [Id]                  BIGINT        IDENTITY (1, 1) NOT NULL,
+    [Veiculo]             VARCHAR (50)  NOT NULL,
+    [Data_estacionamento] VARCHAR (50)  NOT NULL,
+    [hora]                VARCHAR (MAX) NOT NULL,
+    [Lado]                VARCHAR (10)  NOT NULL,
+    [Situacao]            VARCHAR (20)  NOT NULL,
+    [DataRegistro]        VARCHAR (MAX) NOT NULL,
+    [Regra]               VARCHAR (MAX) NOT NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
