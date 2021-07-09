@@ -21,7 +21,7 @@ namespace ProvaFiscal.View
         public Cadastro()
         {
             InitializeComponent();
-           CarreTabela();
+            CarreTabela();
             horaComboBox.MaxLength = (2);
         }
 
